@@ -9,12 +9,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tn.esprit.devops_project.entities.Product;
 
+import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
 
-import java.util.ArrayList;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -25,16 +23,19 @@ ProductRepository productRepository ;
 ProductServiceImpl productServiceImpl ;
 
 Product product = new Product(1L,"prod1",12,14,null,null);
+
     List<Product> products = new ArrayList<>(){
         {
             add(new Product(2L,"prod2",13,120,null,null));
             add(new Product(3L,"prod3",14,2,null,null));
         }
     };
+    Set<Product> foo = new HashSet<>(products);
+    Stock stock = new Stock(55L,"stock1", foo);
     @Test
     void addProduct() {
         Mockito.when(productRepository.save(Mockito.any(Product.class))).thenReturn(product);
-        Product product1 = productServiceImpl.addProduct(product,1L);
+        Product product1 = productServiceImpl.addProduct(product, stock.getIdStock());
         Assertions.assertNotNull(product1);
     }
 
@@ -72,9 +73,6 @@ Product product = new Product(1L,"prod1",12,14,null,null);
         productServiceImpl.deleteProduct(1L);
         Mockito.verify(productRepository).deleteById(1L);
     }
-/*
-    @Test
-    void retreiveProductStock() {
-    }
-*/
+
+
 }
