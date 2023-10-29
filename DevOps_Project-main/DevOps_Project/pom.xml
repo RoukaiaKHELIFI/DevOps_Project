@@ -51,7 +51,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+<<<<<<< HEAD
+        <dependency>
+=======
               <dependency>
+>>>>>>> 92be034a254faba5955ca43cfc6965978e9c6fec
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
         </dependency>
