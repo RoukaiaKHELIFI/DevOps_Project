@@ -25,12 +25,11 @@ List<ActivitySector> activitySectors = new ArrayList<>(){
         add(new ActivitySector(2L,"code","libelle",null));
     }
 };
-    @Test
-    void retrieveActivitySector() {
-        Mockito.when(acRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(activitySector));
-   ActivitySector activitySector1 = AcService.retrieveActivitySector(1L);
-   Assertions.assertNotNull(activitySector1);
-   System.out.println(activitySector1.getCodeSecteurActivite());
+   @Test //JUNIT TEST
+    void testRetrieveActivitySector() {
+        AcService acService = new AcService();
+        ActivitySector activitySector1 = acService.retrieveActivitySector(1L);
+        assertNotNull(activitySector1);
     }
 
     @Test
@@ -54,11 +53,11 @@ List<ActivitySector> activitySectors = new ArrayList<>(){
         Mockito.verify(acRepository).deleteById(1L);
     }
 
-    @Test
-    void updateActivitySector() {
-        Mockito.when(acRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(activitySector));
-        Mockito.when(acRepository.save(Mockito.any(ActivitySector.class))).thenReturn(activitySector);
-        ActivitySector activitySector1 = AcService.updateActivitySector(activitySector);
-        Assertions.assertNotNull(activitySector1);
+   @Test //JUNIT Test
+    void testUpdateActivitySector() {
+        ActivitySector activitySector = new ActivitySector();
+        AcService acService = new AcService(acRepository);
+        ActivitySector activitySector1 = acService.updateActivitySector(activitySector);
+        assertNotNull(activitySector1);
     }
 }
