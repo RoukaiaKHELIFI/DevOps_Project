@@ -1,11 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout GIT') {
+        stage('Testing Maven') {
             steps {
-                echo 'Pulling.....'
-                    git branch: 'Helmi',
-                    url : 'https://github.com/RoukaiaKHELIFI/DevOps_Project.git'
+                sh "mvn -version"
             }
 
           
