@@ -2,7 +2,7 @@ pipeline {
     agent any
 
       stages {
-        stage('GIT Checkout') { steps { script { git branch: 'roukaia',  url: ' https://github.com/RoukaiaKHELIFI/DevOps_Project.git ' } } }
+        stage('GIT Checkout') { steps { script { echo 'getting from git' } } }
         
 
           stage('Maven Clean') {
