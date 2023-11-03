@@ -42,7 +42,15 @@ pipeline {
                 }
             }
         }
-        
+         stage('Deploy Nexus') {
+            steps {
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'mvn deploy -Dnexus.username=admin -Dnexus.password=admin -DskipTests'
+                    }
+                }
+            }
+        }
       
         
     }
