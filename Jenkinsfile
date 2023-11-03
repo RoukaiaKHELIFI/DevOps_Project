@@ -7,7 +7,7 @@ pipeline {
         stage('GIT Checkout') {
             steps {
                 script {
-                    git branch: 'Helmi', url: 'https://github.com/RoukaiaKHELIFI/DevOps_Project.git'
+                    echo " Getting Project from Git "
 		    
                 }
             }
@@ -16,19 +16,18 @@ pipeline {
         stage('MVN CLEAN') {
             steps {
                 script {
-                    dir('DevOps_Project-main/DevOps_Project') {
-                        sh 'mvn clean'
-                    }
+                    
+                     sh '.............'
+                    
                 }
             }
         }
         
         stage('MVN COMPILE') {
             steps {
-                script {
-                    dir('DevOps_Project-main/DevOps_Project') {
-                        sh 'mvn compile'
-                    }
+                script {   
+                      sh '......'
+                    
                 }
             }
         }
@@ -36,9 +35,9 @@ pipeline {
         stage('MVN SONARQUBE') {
             steps {
                 script {
-                    dir('DevOps_Project-main/DevOps_Project') {
-                        sh 'mvn verify sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-                    }
+                   
+                       sh '.......................'
+                    
                 }
             }
         }
@@ -46,9 +45,9 @@ pipeline {
         stage('MVN TEST') {
             steps {
                 script {
-                    dir('DevOps_Project-main/DevOps_Project') {
-                        sh 'mvn test'
-                    }
+                    
+                       sh 'mvn test'
+                    
                 }
             }
         }
