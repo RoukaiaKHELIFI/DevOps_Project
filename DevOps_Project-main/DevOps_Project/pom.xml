@@ -108,7 +108,7 @@
         <repository>
             <id>deploymentRepo</id>
             <name>Nexus Repository</name>
-            <url>http://192.168.1.49:8081/repository/DevOps_Project/</url>
+            <url>http://192.168.1.49:8081/repository/maven-releases/</url>
         </repository>
         <!-- Add snapshotRepository here if deploying snapshots -->
     </distributionManagement>
