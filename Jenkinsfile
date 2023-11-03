@@ -8,7 +8,7 @@ pipeline {
             steps {
                 script {
                     git branch: 'Helmi', url: 'https://github.com/RoukaiaKHELIFI/DevOps_Project.git'
-		    credentialsId: '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'
+		    
                 }
             }
         }
