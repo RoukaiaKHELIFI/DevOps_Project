@@ -1,12 +1,55 @@
 pipeline {
     agent any
+    
     stages {
-        stage('Testing Maven') {
+        
+        
+        stage('GIT Checkout') {
             steps {
-                sh "mvn -version"
+                script {
+                    git branch: 'Helmi', url: 'https://github.com/RoukaiaKHELIFI/DevOps_Project.git'
+                }
             }
-
-          
+        }
+        
+        stage('MVN CLEAN') {
+            steps {
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'mvn clean'
+                    }
+                }
+            }
+        }
+        
+        stage('MVN COMPILE') {
+            steps {
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'mvn compile'
+                    }
+                }
+            }
+        }
+        
+        stage('MVN SONARQUBE') {
+            steps {
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'mvn verify sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+                    }
+                }
+            }
+        }
+        
+        stage('MVN TEST') {
+            steps {
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'mvn test'
+                    }
+                }
+            }
         }
     }
 }
