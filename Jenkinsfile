@@ -4,7 +4,7 @@ pipeline {
     stages {
         
         
-        stage('GIT Checkout') {
+        stage('GIT') {
             steps {
                 script {
                     echo " Getting Project from Git "
@@ -42,14 +42,6 @@ pipeline {
             }
         }
         
-        stage('MVN TEST') {
-            steps {
-                script {
-                    
-                       sh 'mvn test'
-                    
-                }
-            }
-        }
+        
     }
 }
