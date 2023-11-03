@@ -11,7 +11,7 @@ import tn.esprit.devops_project.repositories.ProductRepository;
 import tn.esprit.devops_project.repositories.StockRepository;
 
 import java.util.List;
-
+import java.util.logging.Logger;
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -19,9 +19,10 @@ public class ProductServiceImpl implements IProductService {
 
    final ProductRepository productRepository;
    final StockRepository stockRepository;
-
+   final Logger logger = Logger.getLogger(getClass().getName());
     @Override
     public Product addProduct(Product product, Long idStock) {
+
         Stock stock = stockRepository.findById(idStock).orElseThrow(() -> new NullPointerException("stock not found"));
         product.setStock(stock);
         return productRepository.save(product);
