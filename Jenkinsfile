@@ -13,21 +13,22 @@ pipeline {
             }
         }
         
-        stage('MVN CLEAN') {
+         stage('MVN CLEAN') {
             steps {
                 script {
-                    
-                     sh '.............'
-                    
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'mvn clean'
+                    }
                 }
             }
         }
         
         stage('MVN COMPILE') {
             steps {
-                script {   
-                      sh '......'
-                    
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'mvn compile'
+                    }
                 }
             }
         }
@@ -35,13 +36,16 @@ pipeline {
         stage('MVN SONARQUBE') {
             steps {
                 script {
-                   
-                       sh '.......................'
-                    
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'mvn verify sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+                    }
                 }
             }
         }
         
+      
         
     }
 }
+        
+        
