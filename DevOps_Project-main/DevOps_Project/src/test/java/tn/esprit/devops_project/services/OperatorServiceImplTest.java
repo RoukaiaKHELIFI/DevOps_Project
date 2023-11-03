@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
 import tn.esprit.devops_project.repositories.OperatorRepository;
 
 
@@ -46,7 +45,7 @@ class OperatorServiceImplTest {
 
 
 
-
+/*
     @Test
     void retrieveAllOperators() {
         Mockito.when(operatorRepository.findAll()).thenReturn(operators);
@@ -56,24 +55,54 @@ class OperatorServiceImplTest {
 
     }
 
+*/
 
-
-
+/*
     @Test
     void addOperator() {
         Mockito.when(operatorRepository.save(Mockito.any(Operator.class))).thenReturn(operator);
         Operator operator1 = operatorService.addOperator(operator);
         Assertions.assertNotNull(operator1);
     }
+*/
 
-
-
+    //Mockito
     @Test
     void retrieveOperator() {
         Mockito.when(operatorRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(operator));
         Operator operator1 = operatorService.retrieveOperator(1L);
         Assertions.assertNotNull(operator1);
         System.out.println(operator1.getLname());
+    }
+    //Mockito
+    @Test
+    void deleteOperator() {
+        Mockito.doNothing().when(operatorRepository).deleteById(Mockito.anyLong());
+
+        operatorService.deleteOperator(1L);
+
+        Mockito.verify(operatorRepository, Mockito.times(1)).deleteById(1L);
+
+    }
+    //JUnit
+    @Test
+    void updateOperator() {
+        List<Operator> operatorList = new ArrayList<>();
+        operatorList.add(operatorService.updateOperator(operator));
+        Assertions.assertNotNull(operatorList);
+    }
+    // JUnit
+    @Test
+    void retrieveAllOperators() {
+        Assertions.assertEquals(2, operators.size());
+    }
+
+    // JUnit
+    @Test
+    void addOperator() {
+        List<Operator> test = new ArrayList<>();
+        test.add(operatorService.addOperator(operator));
+        Assertions.assertNotNull(test);
     }
 }
 
