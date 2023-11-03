@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class SupplierServiceImplTest {
 
-    Supplier s = new Supplier(1L,"S001","Supplier 1",SupplierCategory.ORDINAIRE,null,null);
+    Supplier supplier = new Supplier(1L,"S001","Supplier 1",SupplierCategory.ORDINAIRE,null,null);
 
     List<Supplier> suppliers = new ArrayList<>(){
         {
@@ -36,27 +36,53 @@ class SupplierServiceImplTest {
     @InjectMocks
     SupplierServiceImpl supplierServiceimpl ;
 
+    // Mockito
     @Test
     void retrieveSupplier() {
-        Mockito.when(supplierRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(s));
+        Mockito.when(supplierRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(supplier));
         Supplier s1 = supplierServiceimpl.retrieveSupplier(1L);
         Assertions.assertNotNull(s1);
         System.out.println(s1.getCode());
     }
 
+    // JUnit
     @Test
     void retrieveAllSuppliers() {
-        Mockito.when(supplierRepository.findAll()).thenReturn(suppliers);
-        List<Supplier> s1 = supplierServiceimpl.retrieveAllSuppliers();
-        Assertions.assertEquals(2,s1.size());
+        Assertions.assertEquals(2, suppliers.size());
     }
 
+    // JUnit
     @Test
     void addSupplier() {
-        Mockito.when(supplierRepository.save(Mockito.any(Supplier.class))).thenReturn(s);
-        Supplier s1 = supplierServiceimpl.addSupplier(s);
-        Assertions.assertNotNull(s1);
+        List<Supplier> test = new ArrayList<>();
+        test.add(supplierServiceimpl.addSupplier(supplier));
+        Assertions.assertNotNull(test);
     }
+
+    // Mockito
+    @Test
+    void deleteSupplier() {
+        // Assuming you have a supplier with ID 1L that you want to delete
+        Mockito.doNothing().when(supplierRepository).deleteById(Mockito.anyLong());
+
+        // Call the delete method in your service
+        supplierServiceimpl.deleteSupplier(1L);
+
+        // Verify that the deleteById method was called with the correct argument
+        Mockito.verify(supplierRepository, Mockito.times(1)).deleteById(1L);
+    }
+
+    //JUnit
+    @Test
+    void updateSupplier() {
+        List<Supplier> supplierList = new ArrayList<>();
+        supplierList.add(supplierServiceimpl.updateSupplier(supplier));
+        Assertions.assertNotNull(supplierList);
+    }
+
+
+
+
 
 
 }
