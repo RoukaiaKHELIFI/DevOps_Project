@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
 EXPOSE 8083
-ADD target/DevOps_Project.war DevOps_Project.war
-ENTRYPOINT ["java","-jar","/DevOps_Project.war"]
+ADD target/DevOps_Project.jar DevOps_Project.jar
+ENTRYPOINT ["java","-jar","/DevOps_Project.jar"]
