@@ -46,7 +46,6 @@ class StockServiceImplTest {
 
     @Test
     void retrieveAllStock() {
-        Mockito.when(stockRepository.findAll()).thenReturn(stocks);
         List<Stock> s1 = stockServiceImpl.retrieveAllStock();
         Assertions.assertEquals(2,s1.size());
     }
