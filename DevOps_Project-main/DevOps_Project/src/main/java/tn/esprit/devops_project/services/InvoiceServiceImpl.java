@@ -12,6 +12,7 @@ import tn.esprit.devops_project.repositories.OperatorRepository;
 import tn.esprit.devops_project.repositories.SupplierRepository;
 import tn.esprit.devops_project.services.Iservices.IInvoiceService;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 		invoice.setArchived(true);
 		invoiceRepository.save(invoice);
 		//method 02 (Avec JPQL)
-		invoiceRepository.updateInvoice(invoiceId);
+		//invoiceRepository.updateInvoice(invoiceId);
 	}
 
 	@Override
@@ -50,7 +51,9 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public List<Invoice> getInvoicesBySupplier(Long idSupplier) {
 		Supplier supplier = supplierRepository.findById(idSupplier).orElseThrow(() -> new NullPointerException("Supplier not found"));
-		return (List<Invoice>) supplier.getInvoices();
+		System.out.println("ena houni");
+		List<Invoice> List = new ArrayList<Invoice>(supplier.getInvoices());
+		return List;
 	}
 
 	@Override
