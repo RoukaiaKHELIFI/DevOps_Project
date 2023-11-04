@@ -5,7 +5,7 @@
         <repository>
             <id>deploymentRepo</id>
             <name>Nexus Repository</name>
-            <url>http://localhost:8081/repository/maven-releases/</url>
+            <url>http://192.168.0.8:8081/repository/maven-releases/</url>
         </repository>
         <!-- Add snapshotRepository here if deploying snapshots -->
     </distributionManagement>
