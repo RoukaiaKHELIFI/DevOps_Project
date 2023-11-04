@@ -38,6 +38,16 @@ pipeline {
         }
     }
          }
+         stage('Deploy Nexus') {
+            steps {
+                script {
+                    def workspace = pwd()
+                    dir("${workspace}/DevOps_Project-main/DevOps_Project") {
+                        sh "mvn deploy -Dnexus.username=admin -Dnexus.password=admin -DskipTests"
+                    }
+                }
+            }
+        }
          
         
     }
