@@ -110,8 +110,10 @@ class InvoiceServiceImplTest {
     @Test
     @Order(5)
     void assignOperatorToInvoice() {
+        tab.add(i1);
         Mockito.when(acRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(i1));
         Mockito.when(opRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(op1));
+        Assertions.assertEquals(op1.getInvoices(),tab);
         System.out.println("assignOperator To Invoice taadet .............");
     }
 
