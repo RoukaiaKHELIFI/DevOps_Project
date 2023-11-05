@@ -48,6 +48,40 @@ pipeline {
                 }
             }
         }
+	stage('Build Docker Image') {
+    	  steps {
+        	script {
+            	    def workspace = pwd()
+            	    dir("${workspace}/DevOps_Project-main/DevOps_Project") {
+                	sh 'docker build -t skanderbelhassen/devopsimage .'
+            		}
+        	}
+    	    }
+	}
+
+stage('Push Docker Image to Docker Hub') {
+    steps {
+        script {
+            def workspace = pwd()
+            dir("${workspace}/DevOps_Project-main/DevOps_Project") {
+                sh 'docker login -u skanderbelhassen -p 191JMT1928a'
+                sh 'docker tag skanderbelhassen/devopsimage skanderbelhassen/devopsimage:latest'
+                sh 'docker push skanderbelhassen/devopsimage:latest'
+            }
+        }
+    }
+}
+
+stage('Docker Compose') {
+            steps {
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'docker compose up -d'
+                    }
+                }
+            }
+        
+        }
          
         
     }
