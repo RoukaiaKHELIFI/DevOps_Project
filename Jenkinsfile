@@ -51,6 +51,40 @@ pipeline {
                 }
             }
         }
+	stage('Build Docker Image') {
+    	  steps {
+        	script {
+            	    def workspace = pwd()
+            	    dir("${workspace}/DevOps_Project-main/DevOps_Project") {
+                	sh 'docker build -t helmi07/devopsimage .'
+            		}
+        	}
+    	    }
+	}
+
+	stage('Push Docker Image to Docker Hub') {
+    steps {
+        script {
+            def workspace = pwd()
+            dir("${workspace}/DevOps_Project-main/DevOps_Project") {
+                sh 'docker login -u helmi07 -p Halminos17'
+                sh 'docker tag helmi07/devopsimage helmi07/devopsimage:latest'
+                sh 'docker push helmi07/devopsimage:latest'
+            }
+        }
+    }
+}
+
+	stage('Docker Compose') {
+            steps {
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                        sh 'docker compose up -d'
+                    }
+                }
+            }
+        
+        }
       
         
     }
