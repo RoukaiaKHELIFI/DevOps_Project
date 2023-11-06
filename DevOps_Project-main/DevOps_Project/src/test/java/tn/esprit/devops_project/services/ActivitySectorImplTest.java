@@ -6,27 +6,22 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.repositories.ActivitySectorRepository;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 @ExtendWith(MockitoExtension.class)
-
+@SpringBootTest
 class ActivitySectorImplTest {
     ActivitySectorRepository acRepository = Mockito.mock(ActivitySectorRepository.class);
+    @Autowired
+    ActivitySectorRepository acR;
     @InjectMocks
     ActivitySectorImpl AcService;
 
     ActivitySector activitySector = new ActivitySector(1L, "code", "libelle", null);
-    List<ActivitySector> activitySectors = new ArrayList<>() {
-        {
-            add(new ActivitySector(1L, "code", "libelle", null));
-            add(new ActivitySector(2L, "code", "libelle", null));
-        }
-    };
-
-    @Test
+    @Test //Mockito Testing for Retrieve
     void retrieveActivitySector() {
         Mockito.when(acRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(activitySector));
         ActivitySector activitySector1 = AcService.retrieveActivitySector(1L);
@@ -35,29 +30,36 @@ class ActivitySectorImplTest {
     }
 
 
-    @Test
+    @Test //Junit test with Database
     void retrieveAllActivitySectors() {
-        Assertions.assertEquals(2, activitySectors.size());
+
+        ActivitySector activitySector1 = new ActivitySector(1L, "code", "libelle", null);
+        ActivitySector activitySector2 = new ActivitySector(2L, "code", "libelle", null);
+        acR.save(activitySector1);
+        acR.save(activitySector2);
+        // Retrieving all activity sectors from the database
+        Assertions.assertEquals(2, acR.findAll().size());
     }
 
-    @Test
+    @Test //Juinit test with Database
     void addActivitySector() {
-        List<ActivitySector> test = new ArrayList<>();
-        test.add(AcService.addActivitySector(activitySector));
-        Assertions.assertNotNull(test);
+        acR.save(activitySector);
+        Assertions.assertNotNull(acR.findById(activitySector.getIdSecteurActivite()));
     }
 
-    @Test
+    @Test //Mockito Testing for Delete
     void deleteActivitySector() {
         Mockito.when(acRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(activitySector));
         AcService.deleteActivitySector(1L);
         Mockito.verify(acRepository).deleteById(1L);
     }
 
-    @Test
+    @Test // Junit Update with Database
     void updateActivitySector() {
-      List<ActivitySector> activitySectorsT = new ArrayList<>();
-        activitySectorsT.add(AcService.updateActivitySector(activitySector));
-        Assertions.assertNotNull(activitySectorsT);
+        acR.save(activitySector);
+        activitySector.setLibelleSecteurActivite("updated");
+        activitySector.setCodeSecteurActivite("updated");
+        AcService.updateActivitySector(activitySector);
+        Assertions.assertNotSame(acR.findById(activitySector.getIdSecteurActivite()), AcService.updateActivitySector(activitySector));
     }
 }
