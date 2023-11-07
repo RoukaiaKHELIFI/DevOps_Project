@@ -79,11 +79,8 @@ class SupplierServiceImplTest {
     // Mockito
     @Test
     void deleteSupplier() {
-        // Assuming you have a supplier with ID 1L that you want to delete
         Mockito.doNothing().when(supplierRepository).deleteById(Mockito.anyLong());
-        // Call the delete method in your service
         supplierServiceimpl.deleteSupplier(1L);
-        // Verify that the deleteById method was called with the correct argument
         Mockito.verify(supplierRepository, Mockito.times(1)).deleteById(1L);
         System.out.println("Delete Supplier Completed");
     }
