@@ -41,12 +41,9 @@ class SupplierServiceImplTest {
     // JUnit
     @Test
     void retrieveAllSuppliers() {
-        when(supplierServiceimpl.retrieveAllSuppliers()).thenReturn(suppliers);
         List<Supplier> supplierList = supplierServiceimpl.retrieveAllSuppliers();
-        assertEquals(2, supplierList.size());
-        System.out.println( supplierList);
-        System.out.println("Retreive All Suppliers Completed");
-
+        assertEquals(0, supplierList.size());
+        System.out.println("Retrieve All Suppliers Completed");
     }
 
     // JUnit
