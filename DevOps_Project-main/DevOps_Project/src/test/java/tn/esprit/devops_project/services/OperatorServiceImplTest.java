@@ -45,26 +45,7 @@ class OperatorServiceImplTest {
 
 
 
-/*
-    @Test
-    void retrieveAllOperators() {
-        Mockito.when(operatorRepository.findAll()).thenReturn(operators);
-        List<Operator> operator1 = operatorService.retrieveAllOperators();
-        Assertions.assertEquals(2,operator1.size());
 
-
-    }
-
-*/
-
-/*
-    @Test
-    void addOperator() {
-        Mockito.when(operatorRepository.save(Mockito.any(Operator.class))).thenReturn(operator);
-        Operator operator1 = operatorService.addOperator(operator);
-        Assertions.assertNotNull(operator1);
-    }
-*/
 
     //Mockito
     @Test
@@ -91,12 +72,11 @@ class OperatorServiceImplTest {
         operatorList.add(operatorService.updateOperator(operator));
         Assertions.assertNotNull(operatorList);
     }
-    // JUnit
+    //Mockito
     @Test
     void retrieveAllOperators() {
 
         when(operatorService.retrieveAllOperators()).thenReturn(operators);
-        //test
         List<Operator> operatorList = operatorService.retrieveAllOperators();
         assertEquals(2, operatorList.size());
         System.out.println( operatorList);
