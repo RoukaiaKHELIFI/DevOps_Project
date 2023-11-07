@@ -38,24 +38,16 @@ class SupplierServiceImplTest {
     @InjectMocks
     SupplierServiceImpl supplierServiceimpl ;
 
-    // Mockito
-    @Test
-    void retrieveSupplier() {
-        when(supplierRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(supplier));
-        Supplier s1 = supplierServiceimpl.retrieveSupplier(1L);
-        Assertions.assertNotNull(s1);
-        System.out.println(s1.getCode());
-    }
+
 
     // JUnit
     @Test
     void retrieveAllSuppliers() {
         when(supplierServiceimpl.retrieveAllSuppliers()).thenReturn(suppliers);
-        //test
         List<Supplier> supplierList = supplierServiceimpl.retrieveAllSuppliers();
         assertEquals(2, supplierList.size());
         System.out.println( supplierList);
-        System.out.println("Retreive All Suppliers Completed..........");
+        System.out.println("Retreive All Suppliers Completed");
 
     }
 
@@ -65,19 +57,8 @@ class SupplierServiceImplTest {
         List<Supplier> test = new ArrayList<>();
         test.add(supplierServiceimpl.addSupplier(supplier));
         Assertions.assertNotNull(test);
-    }
-
-    // Mockito
-    @Test
-    void deleteSupplier() {
-        // Assuming you have a supplier with ID 1L that you want to delete
-        Mockito.doNothing().when(supplierRepository).deleteById(Mockito.anyLong());
-
-        // Call the delete method in your service
-        supplierServiceimpl.deleteSupplier(1L);
-
-        // Verify that the deleteById method was called with the correct argument
-        Mockito.verify(supplierRepository, Mockito.times(1)).deleteById(1L);
+        Assertions.assertEquals(1, test.size());
+        System.out.println("Add Supplier Completed");
     }
 
     //JUnit
@@ -86,9 +67,31 @@ class SupplierServiceImplTest {
         List<Supplier> supplierList = new ArrayList<>();
         supplierList.add(supplierServiceimpl.updateSupplier(supplier));
         Assertions.assertNotNull(supplierList);
+        System.out.println("Update Completed");
     }
 
 
+    // Mockito
+    @Test
+    void retrieveSupplier() {
+        when(supplierRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(supplier));
+        Supplier s1 = supplierServiceimpl.retrieveSupplier(1L);
+        Assertions.assertNotNull(s1);
+        System.out.println(s1.getCode());
+        System.out.println("Retrieve Supplier Completed");
+    }
+
+    // Mockito
+    @Test
+    void deleteSupplier() {
+        // Assuming you have a supplier with ID 1L that you want to delete
+        Mockito.doNothing().when(supplierRepository).deleteById(Mockito.anyLong());
+        // Call the delete method in your service
+        supplierServiceimpl.deleteSupplier(1L);
+        // Verify that the deleteById method was called with the correct argument
+        Mockito.verify(supplierRepository, Mockito.times(1)).deleteById(1L);
+        System.out.println("Delete Supplier Completed");
+    }
 
 
 
