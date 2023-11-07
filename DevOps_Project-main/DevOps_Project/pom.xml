@@ -108,6 +108,7 @@
     </executions>
 </plugin>
         </plugins>
+        <finalName>DevOps_Project-2.1.0</finalName>
     </build>
  <distributionManagement>
         <repository>
