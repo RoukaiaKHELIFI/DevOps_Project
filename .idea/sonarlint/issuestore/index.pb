@@ -53,3 +53,9 @@ qDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/servi
 qDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/services/Iservices/IInvoiceService.java,5\4\54220c4e8c4f2a76fd035b4669cb3fe210e0ffe1
 š
 jDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/services/ProductServiceImpl.java,a\c\ac3060ada8b3adaafef5db9dd65058db66be6147
+¢
+rDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/services/iservices/ISupplierService.java,0\0\001960a2bf50db89cbad0e9f932e385281d2eeac
+¡
+qDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/services/iservices/IInvoiceService.java,e\d\ed40256cfd5a4a8eda74f83f8082c3253e01dc6a
+¡
+qDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/services/iservices/IActivitySector.java,8\8\88ab1fbe40414d19224f5e600a629e084996b6e3
