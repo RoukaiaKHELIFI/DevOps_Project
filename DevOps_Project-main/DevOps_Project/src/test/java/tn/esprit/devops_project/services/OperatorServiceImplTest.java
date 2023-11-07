@@ -17,6 +17,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import static org.mockito.Mockito.when;
 
 import tn.esprit.devops_project.repositories.OperatorRepository;
 
@@ -94,7 +95,13 @@ class OperatorServiceImplTest {
     // JUnit
     @Test
     void retrieveAllOperators() {
-        Assertions.assertEquals(2, operators.size());
+
+        when(operatorService.retrieveAllOperators()).thenReturn(operators);
+        //test
+        List<Operator> operatorList = operatorService.retrieveAllOperators();
+        assertEquals(2, operatorList.size());
+        System.out.println( operatorList);
+        System.out.println("Retreive All Operators Completed..........");
     }
 
     // JUnit
