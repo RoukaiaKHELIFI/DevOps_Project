@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 class SupplierServiceImplTest {
 
@@ -39,7 +41,7 @@ class SupplierServiceImplTest {
     // Mockito
     @Test
     void retrieveSupplier() {
-        Mockito.when(supplierRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(supplier));
+        when(supplierRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(supplier));
         Supplier s1 = supplierServiceimpl.retrieveSupplier(1L);
         Assertions.assertNotNull(s1);
         System.out.println(s1.getCode());
@@ -48,7 +50,13 @@ class SupplierServiceImplTest {
     // JUnit
     @Test
     void retrieveAllSuppliers() {
-        Assertions.assertEquals(2, suppliers.size());
+        when(supplierServiceimpl.retrieveAllSuppliers()).thenReturn(suppliers);
+        //test
+        List<Supplier> supplierList = supplierServiceimpl.retrieveAllSuppliers();
+        assertEquals(2, supplierList.size());
+        System.out.println( supplierList);
+        System.out.println("Retreive All Suppliers Completed..........");
+
     }
 
     // JUnit
