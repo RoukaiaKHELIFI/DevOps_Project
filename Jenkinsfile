@@ -82,17 +82,17 @@ stage('Docker Compose') {
             }
         
         }
-	stage('Email Notification') {
+	stage('Send Email') {
             steps {
                 script {
-                    dir('DevOps_Project-main/DevOps_Project') {
-                       	mail bcc: '', body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
-			Check console output at $BUILD_URL to view the results.
-			This is an auto generated email . Don\'t reply''', cc: '', from: '', replyTo: '', subject: 'Jenkins steps', to: 'skander.belhassen@esprit.tn'
-                    }
+                    emailext body: 'Voici le rapport de votre build.', 
+                             subject: 'Rapport de build Jenkins', 
+                             to: 'skander.belhassen@esprit.tn',
+                             attachLog: true, 
+                             mimeType: 'text/html',
+                             from: 'projecttest425@gmail.com'
                 }
             }
-        
         }
 stage('grafana') {
             steps {
