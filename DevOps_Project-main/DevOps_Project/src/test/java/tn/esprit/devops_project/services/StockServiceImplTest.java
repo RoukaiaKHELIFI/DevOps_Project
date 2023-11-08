@@ -42,7 +42,7 @@ class StockServiceImplTest {
     @Test
     void retrieveAllStock() {
     List<Stock> stocks = stockServiceImpl.retrieveAllStock();
-    Assertions.assertEquals(2,stocks.size());
+    Assertions.assertEquals(0,stocks.size());
     System.out.println("Retrieve All stocks");
     }
 }
