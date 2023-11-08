@@ -42,7 +42,18 @@ pipeline {
                 }
             }
         }
-         stage('Deploy Nexus') {
+  
+          stage('Mockito') {
+            steps {
+                script {
+		    def workspace = pwd()
+                    dir("${workspace}/DevOps_Project-main/DevOps_Project") {
+                        sh 'mvn test'
+                    }
+                }
+            }
+        }
+         stage('Nexus') {
             steps {
                 script {
                     dir('DevOps_Project-main/DevOps_Project') {
@@ -51,7 +62,7 @@ pipeline {
                 }
             }
         }
-	stage('Build Docker Image') {
+	stage('DOCKER IMAGE') {
     	  steps {
         	script {
             	    def workspace = pwd()
@@ -62,7 +73,7 @@ pipeline {
     	    }
 	}
 
-	stage('Push Docker Image to Docker Hub') {
+	stage('DOCKER HUB') {
     steps {
         script {
             def workspace = pwd()
@@ -75,7 +86,7 @@ pipeline {
     }
 }
 
-	stage('Docker Compose') {
+	stage('DOCKER-COMPOSE') {
             steps {
                 script {
                     dir('DevOps_Project-main/DevOps_Project') {
@@ -85,7 +96,13 @@ pipeline {
             }
         
         }
-	stage('Email Notification') {
+	stage('GRAFANA') {
+            steps {
+                sh "docker restart prometheus"
+                sh "docker restart grafana"
+            }
+        } 
+	stage('MAIL') {
             steps {
                 script {
                     dir('DevOps_Project-main/DevOps_Project') {
