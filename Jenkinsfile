@@ -67,7 +67,7 @@ pipeline {
         	script {
             	    def workspace = pwd()
             	    dir("${workspace}/DevOps_Project-main/DevOps_Project") {
-                	//sh 'docker build -t helmi07/devopsimage .'
+                	sh 'docker build -t helmi07/devopsimage .'
             		}
         	}
     	    }
@@ -78,9 +78,9 @@ pipeline {
         script {
             def workspace = pwd()
             dir("${workspace}/DevOps_Project-main/DevOps_Project") {
-                //sh 'docker login -u helmi07 -p Halminos17'
-                //sh 'docker tag helmi07/devopsimage helmi07/devopsimage:latest'
-                //sh 'docker push helmi07/devopsimage:latest'
+                sh 'docker login -u helmi07 -p Halminos17'
+                sh 'docker tag helmi07/devopsimage helmi07/devopsimage:latest'
+                sh 'docker push helmi07/devopsimage:latest'
             }
         }
     }
@@ -90,7 +90,7 @@ pipeline {
             steps {
                 script {
                     dir('DevOps_Project-main/DevOps_Project') {
-                        //sh 'docker compose up -d'
+                        sh 'docker compose up -d'
                     }
                 }
             }
@@ -117,6 +117,24 @@ pipeline {
       
         
     }
+post{
+    always{
+         
+    junit '**/DevOps_Project-main/DevOps_Project/target/surefire-reports/*.xml'
+
+    }
+    failure{
+        
+              script { 
+                  mail bcc: '', 
+                body: '''there is a failure check the table ''',
+                cc: '', from: '', replyTo: '', 
+                subject: 'Jenkins steps', to: 'helmi.dridi11@gmail.com'   
+                } 
+         
+    }
+   
+}
 }
         
         
