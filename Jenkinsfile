@@ -82,6 +82,25 @@ stage('Docker Compose') {
             }
         
         }
+	stage('Email Notification') {
+            steps {
+                script {
+                    dir('DevOps_Project-main/DevOps_Project') {
+                       	mail bcc: '', body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+			Check console output at $BUILD_URL to view the results.
+			This is an auto generated email . Don\'t reply''', cc: '', from: '', replyTo: '', subject: 'Jenkins steps', to: 'skander.belhassen@esprit.tn'
+                    }
+                }
+            }
+        
+        }
+stage('grafana') {
+            steps {
+                sh "docker restart prometheus"
+                sh "docker restart grafana"
+            }
+        } 
+
          
         
     }
