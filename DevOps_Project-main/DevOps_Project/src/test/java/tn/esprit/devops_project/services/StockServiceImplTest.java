@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.StockRepository;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -19,12 +19,7 @@ class StockServiceImplTest {
 
     Stock s = new Stock(1L,"stock1",null);
 
-    List<Stock> stocks = new ArrayList<>(){
-        {
-            add(new Stock(2L,"stock2",null));
-            add(new Stock(3L,"stock3",null));
-        }
-    };
+
     @Mock
     StockRepository stockRepository ;
     @InjectMocks
@@ -32,8 +27,8 @@ class StockServiceImplTest {
     @Test
     void addStock() {
         Mockito.when(stockRepository.save(Mockito.any(Stock.class))).thenReturn(s);
-        Stock s1 = stockServiceImpl.addStock(s);
-        Assertions.assertNotNull(s1);
+        Stock s2 = stockServiceImpl.addStock(s);
+        Assertions.assertNotNull(s2);
     }
 
     @Test
@@ -46,6 +41,8 @@ class StockServiceImplTest {
 
     @Test
     void retrieveAllStock() {
-        Assertions.assertEquals(2,stocks.size());
+        List<Stock> stocks = stockServiceImpl.retrieveAllStock();
+        Assertions.assertEquals(0,stocks.size());
+        System.out.println("Retrieve All stocks");
     }
 }
