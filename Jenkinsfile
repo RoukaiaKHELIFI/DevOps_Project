@@ -104,4 +104,22 @@ stage('grafana') {
          
         
     }
+post{
+    always{
+         
+    junit '**/DevOps_Project-main/DevOps_Project/target/surefire-reports/*.xml'
+
+    }
+    failure{
+        
+              script { 
+                  mail bcc: '', 
+                body: '''Porject Has Errors''',
+                cc: '', from: 'projecttest425@gmail.com', replyTo: '', 
+                subject: 'Jenkins steps',attachLog: true, mimeType: 'text/html', to: 'skander.belhassen@esprit.tn'   
+                } 
+         
+    }
+   
+}
 }
