@@ -129,7 +129,7 @@ post{
                   mail bcc: '', 
                 body: '''there is a failure check the table ''',
                 cc: '', from: '', replyTo: '', 
-                subject: 'Jenkins steps', to: 'helmi.dridi11@gmail.com'   
+                subject: 'Jenkins steps', to: 'helmi.dridi11@gmail.com', attachLog: true   
                 } 
          
     }
