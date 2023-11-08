@@ -67,3 +67,5 @@ nDevOps_Project-main/DevOps_Project/src/test/java/tn/esprit/devops_project/servi
 nDevOps_Project-main/DevOps_Project/src/test/java/tn/esprit/devops_project/services/ProductServiceImplTest.java,c\5\c57ef88f75006b76e767f447a86041c236f5fd48
 ž
 nDevOps_Project-main/DevOps_Project/src/test/java/tn/esprit/devops_project/services/InvoiceServiceImplTest.java,2\9\293461a8f26642f298593ca6025e1260cbf2abed
+œ
+lDevOps_Project-main/DevOps_Project/src/test/java/tn/esprit/devops_project/services/StockServiceImplTest.java,1\2\12f02c9b37a1ff3e22bfd9a9624ee4eefe015988
