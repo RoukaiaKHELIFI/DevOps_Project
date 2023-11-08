@@ -27,8 +27,8 @@ class StockServiceImplTest {
     @Test
     void addStock() {
         Mockito.when(stockRepository.save(Mockito.any(Stock.class))).thenReturn(s);
-        Stock s1 = stockServiceImpl.addStock(s);
-        Assertions.assertNotNull(s1);
+        Stock s2 = stockServiceImpl.addStock(s);
+        Assertions.assertNotNull(s2);
     }
 
     @Test
