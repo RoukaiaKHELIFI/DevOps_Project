@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
+
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.ProductCategory;
 import tn.esprit.devops_project.entities.Stock;
@@ -71,7 +71,7 @@ Product p4=new Product(8L,"Celio",15000,3, ProductCategory.CLOTHING,s1);
     @Test
     @Order(3)
     void retreiveAllProduct() {
-        List<Product> products = new ArrayList<Product>() {
+        List<Product> products = new ArrayList<>() {
 
             {
                 add(p2);
@@ -90,7 +90,7 @@ Product p4=new Product(8L,"Celio",15000,3, ProductCategory.CLOTHING,s1);
     @Test
     @Order(4)
     void retrieveProductByCategory() {
-        List<Product> products = new ArrayList<Product>() {
+        List<Product> products = new ArrayList<>() {
 
             {
                 add(p1);
@@ -101,7 +101,7 @@ Product p4=new Product(8L,"Celio",15000,3, ProductCategory.CLOTHING,s1);
         //test
         List<Product> pList = pdService.retrieveProductByCategory(ProductCategory.ELECTRONICS);
         assertEquals(2, pList.size());
-        System.out.println( pList.toString());
+        System.out.println( pList);
         System.out.println("retrieve Product By Category completed..........");
     }
 
@@ -118,7 +118,7 @@ Product p4=new Product(8L,"Celio",15000,3, ProductCategory.CLOTHING,s1);
     @Test
     @Order(6)
     void retreiveProductStock() {
-        List<Product> products = new ArrayList<Product>() {
+        List<Product> products = new ArrayList<>() {
 
             {
                 add(p1);
