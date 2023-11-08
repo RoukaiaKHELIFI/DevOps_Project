@@ -24,7 +24,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	final OperatorRepository operatorRepository;
 	final InvoiceDetailRepository invoiceDetailRepository;
 	final SupplierRepository supplierRepository;
-	String not_found = "Invoice not found";
+	String notFound = "Invoice not found";
 	//commentaire
 	//commentaire 2 developper
 	@Override
