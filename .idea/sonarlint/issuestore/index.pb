@@ -59,3 +59,11 @@ rDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/servi
 qDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/services/iservices/IInvoiceService.java,e\d\ed40256cfd5a4a8eda74f83f8082c3253e01dc6a
 ¡
 qDevOps_Project-main/DevOps_Project/src/main/java/tn/esprit/devops_project/services/iservices/IActivitySector.java,8\8\88ab1fbe40414d19224f5e600a629e084996b6e3
+Ÿ
+oDevOps_Project-main/DevOps_Project/src/test/java/tn/esprit/devops_project/services/OperatorServiceImplTest.java,4\4\441684933e10bf3d8bb8fbfb19d0f5ab3e1c7dab
+ž
+nDevOps_Project-main/DevOps_Project/src/test/java/tn/esprit/devops_project/services/ActivitySectorImplTest.java,4\a\4af7397fd0e970a824452513eb073462ff686d8a
+ž
+nDevOps_Project-main/DevOps_Project/src/test/java/tn/esprit/devops_project/services/ProductServiceImplTest.java,c\5\c57ef88f75006b76e767f447a86041c236f5fd48
+ž
+nDevOps_Project-main/DevOps_Project/src/test/java/tn/esprit/devops_project/services/InvoiceServiceImplTest.java,2\9\293461a8f26642f298593ca6025e1260cbf2abed
